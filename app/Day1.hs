@@ -1,4 +1,5 @@
 module Day1 where
 
-day1 :: FilePath -> IO ()
-day1 f = print "Hello"
+day1 :: String -> IO ()
+day1 input = do
+    print input

@@ -21,8 +21,10 @@ main = do
     parsedCli <- execParser $ info (cli <**> helper) fullDesc
     print parsedCli
 
+    input <- readFile parsedCli.input_file
+
     case day parsedCli of
-        "1" -> Day1.day1 parsedCli.input_file
+        "1" -> Day1.day1 input
         _ -> putStrLn "Day not implemented"
 
     return ()
