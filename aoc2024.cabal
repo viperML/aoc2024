@@ -19,7 +19,6 @@ executable aoc2024
     import:           warnings
     main-is:          Main.hs
     default-extensions:
-        , OverloadedRecordDot
         , OverloadedStrings
     other-modules:
         , Day1
