@@ -22,6 +22,7 @@ executable aoc2024
         , OverloadedStrings
     other-modules:
         , Day1
+        , Day2
     build-depends:
         , base
         , optparse-applicative
