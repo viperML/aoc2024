@@ -33,6 +33,7 @@ main = do
     (1, 1) -> Day1.day1 input
     (1, 2) -> Day1.day1part2 input
     (2, 1) -> Day2.day2 input
+    (2, 2) -> Day2.day2part2 input
     _ -> putStrLn "Day not implemented"
 
   return ()
