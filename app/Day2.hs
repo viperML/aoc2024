@@ -12,22 +12,6 @@ day2 input = do
 
     print (length $ filter id x)
 
-day2part2 :: String -> IO ()
-day2part2 input = do
-    let parsed = parse input
-
-    let x =
-            parsed
-                <&> ( \line ->
-                        traceVal $
-                            foldLineDampenDescend line
-                                || foldLineDampenAscend line
-                                || foldLineDampenAscend (reverse line)
-                                || foldLineDampenDescend (reverse line)
-                    )
-
-    print (length $ filter id x)
-
 parse :: String -> [[Integer]]
 parse input = filter (/= []) $ fmap read . words <$> lines input
 
@@ -48,6 +32,21 @@ foldLineAscend = fromJust . fst . foldLineWith (\prev next -> next - prev <= 3 &
 foldLineDescend :: [Integer] -> Bool
 foldLineDescend = fromJust . fst . foldLineWith (\prev next -> next - prev >= -3 && next - prev < 0)
 
+day2part2 :: String -> IO ()
+day2part2 input = do
+    let parsed = parse input
+
+    let x =
+            parsed
+                <&> ( \line ->
+                        traceVal $
+                            foldLineDampenDescend line
+                                || foldLineDampenAscend line
+                                || foldLineDampenAscend (reverse line)
+                                || foldLineDampenDescend (reverse line)
+                    )
+
+    print (length $ filter id x)
 foldLineDampenWith ::
     (Integer -> Integer -> Bool) -> [Integer] -> (Maybe Bool, Maybe (Integer, Bool), Integer)
 foldLineDampenWith f line =
