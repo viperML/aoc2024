@@ -8,7 +8,7 @@ day2 :: String -> IO ()
 day2 input = do
     let parsed = parse input
 
-    let x = parsed <&> (\line -> foldLineDescend line || foldLineAscend line)
+    let x = parsed <&> (\line -> foldLineAscend line || foldLineAscend (reverse line))
 
     print (length $ filter id x)
 
@@ -28,9 +28,6 @@ foldLineWith f line =
 
 foldLineAscend :: [Integer] -> Bool
 foldLineAscend = fromJust . fst . foldLineWith (\prev next -> next - prev <= 3 && next - prev > 0)
-
-foldLineDescend :: [Integer] -> Bool
-foldLineDescend = fromJust . fst . foldLineWith (\prev next -> next - prev >= -3 && next - prev < 0)
 
 day2part2 :: String -> IO ()
 day2part2 input = do
