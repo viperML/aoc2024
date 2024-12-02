@@ -16,7 +16,15 @@ day2part2 :: String -> IO ()
 day2part2 input = do
     let parsed = parse input
 
-    let x = parsed <&> (\line -> foldLineDampenDescend line || foldLineDampenAscend line)
+    let x =
+            parsed
+                <&> ( \line ->
+                        traceVal $
+                            foldLineDampenDescend line
+                                || foldLineDampenAscend line
+                                || foldLineDampenAscend (reverse line)
+                                || foldLineDampenDescend (reverse line)
+                    )
 
     print (length $ filter id x)
 
@@ -46,7 +54,7 @@ foldLineDampenWith f line =
     foldl
         ( \acc next -> traceVal $ case acc of
             (Nothing, d, _) -> (Just True, d, next)
-            (Just False, _, _) -> (Just False, Nothing, next)
+            (Just False, d, _) -> (Just False, d, next)
             (Just True, Nothing, prev) -> case f prev next of
                 True -> (Just True, Nothing, next)
                 False -> (Just True, Just (prev, False), next)

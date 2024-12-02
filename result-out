@@ -1,0 +1,120 @@
+Build profile: -w ghc-9.6.6 -O1
+In order, the following will be built (use -v for more details):
+ - aoc2024-0.1.0.0 (exe:aoc2024) (file app/Day2.hs changed)
+Preprocessing executable 'aoc2024' for aoc2024-0.1.0.0...
+Building executable 'aoc2024' for aoc2024-0.1.0.0...
+[2 of 3] Compiling Day2             ( app/Day2.hs, /var/home/ayats/Documents/aoc2024/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aoc2024-0.1.0.0/x/aoc2024/build/aoc2024/aoc2024-tmp/Day2.o ) [Source file changed]
+
+app/Day2.hs:53:47: warning: [-Wunused-matches]
+    Defined but not used: ‘prev’
+   |
+53 |             (Just True, Just (dampen, False), prev) -> case f dampen next of
+   |                                               ^^^^
+
+app/Day2.hs:56:31: warning: [-Wunused-matches]
+    Defined but not used: ‘dampen’
+   |
+56 |             (Just True, Just (dampen, True), prev) -> case f prev next of
+   |                               ^^^^^^
+[4 of 4] Linking /var/home/ayats/Documents/aoc2024/dist-newstyle/build/x86_64-linux/ghc-9.6.6/aoc2024-0.1.0.0/x/aoc2024/build/aoc2024/aoc2024 [Objects changed]
+(Just True,Nothing,69)
+(Just True,Just (69,False),72)
+(Just False,Just (69,True),75)
+(Just False,Just (69,True),78)
+(Just False,Just (69,True),80)
+(Just False,Just (69,True),79)
+(Just True,Nothing,69)
+(Just True,Nothing,72)
+(Just True,Nothing,75)
+(Just True,Nothing,78)
+(Just True,Nothing,80)
+(Just True,Just (80,False),79)
+True
+(Just True,Nothing,40)
+(Just True,Just (40,False),42)
+(Just False,Just (40,True),43)
+(Just False,Just (40,True),46)
+(Just False,Just (40,True),47)
+(Just False,Just (40,True),48)
+(Just False,Just (40,True),49)
+(Just False,Just (40,True),49)
+(Just True,Nothing,40)
+(Just True,Nothing,42)
+(Just True,Nothing,43)
+(Just True,Nothing,46)
+(Just True,Nothing,47)
+(Just True,Nothing,48)
+(Just True,Nothing,49)
+(Just True,Just (49,False),49)
+True
+(Just True,Nothing,57)
+(Just True,Just (57,False),58)
+(Just False,Just (57,True),59)
+(Just False,Just (57,True),60)
+(Just False,Just (57,True),64)
+(Just True,Nothing,57)
+(Just True,Nothing,58)
+(Just True,Nothing,59)
+(Just True,Nothing,60)
+(Just True,Just (60,False),64)
+True
+(Just True,Nothing,29)
+(Just True,Just (29,False),32)
+(Just False,Just (29,True),35)
+(Just False,Just (29,True),37)
+(Just False,Just (29,True),43)
+(Just True,Nothing,29)
+(Just True,Nothing,32)
+(Just True,Nothing,35)
+(Just True,Nothing,37)
+(Just True,Just (37,False),43)
+True
+(Just True,Nothing,16)
+(Just True,Just (16,False),17)
+(Just False,Just (16,True),18)
+(Just False,Just (16,True),19)
+(Just False,Just (16,True),20)
+(Just False,Just (16,True),17)
+(Just False,Just (16,True),19)
+(Just False,Just (16,True),20)
+(Just True,Nothing,16)
+(Just True,Nothing,17)
+(Just True,Nothing,18)
+(Just True,Nothing,19)
+(Just True,Nothing,20)
+(Just True,Just (20,False),17)
+(Just False,Just (20,True),19)
+(Just False,Just (20,True),20)
+False
+(Just True,Nothing,42)
+(Just True,Just (42,False),45)
+(Just False,Just (42,True),43)
+(Just False,Just (42,True),45)
+(Just False,Just (42,True),48)
+(Just False,Just (42,True),49)
+(Just False,Just (42,True),46)
+(Just True,Nothing,42)
+(Just True,Nothing,45)
+(Just True,Just (45,False),43)
+(Just False,Just (45,True),45)
+(Just False,Just (45,True),48)
+(Just False,Just (45,True),49)
+(Just False,Just (45,True),46)
+False
+(Just True,Nothing,58)
+(Just True,Just (58,False),59)
+(Just False,Just (58,True),62)
+(Just False,Just (58,True),65)
+(Just False,Just (58,True),63)
+(Just False,Just (58,True),66)
+(Just False,Just (58,True),66)
+(Just True,Nothing,58)
+(Just True,Nothing,59)
+(Just True,Nothing,62)
+(Just True,Nothing,65)
+(Just True,Just (65,False),63)
+(Just True,Just (65,True),66)
+Cli {day = 2, input_file = "./data/day2/input", part = 2}
+aoc2024: Prelude.undefined
+CallStack (from HasCallStack):
+  undefined, called at app/Day2.hs:58:45 in aoc2024-0.1.0.0-inplace-aoc2024:Day2
