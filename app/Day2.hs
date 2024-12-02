@@ -1,8 +1,7 @@
 module Day2 where
 
-import Data.Maybe (fromJust)
-import Debug.Trace (trace, traceShow)
 import Data.Functor
+import Data.Maybe (fromJust)
 
 day2 :: String -> IO ()
 day2 input = do
@@ -13,9 +12,7 @@ day2 input = do
     print (length $ filter id x)
 
 parse :: String -> [[Integer]]
-parse input = filter (/= []) $ parseLine <$> lines input
-  where
-    parseLine line = read <$> words line
+parse input = filter (/= []) $ fmap read . words <$> lines input
 
 foldLineWith :: (Integer -> Integer -> Bool) -> [Integer] -> (Maybe Bool, Integer)
 foldLineWith f line =
