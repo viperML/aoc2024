@@ -44,6 +44,7 @@ day2part2 input = do
                     )
 
     print (length $ filter id x)
+
 foldLineDampenWith ::
     (Integer -> Integer -> Bool) -> [Integer] -> (Maybe Bool, Maybe (Integer, Bool), Integer)
 foldLineDampenWith f line =
