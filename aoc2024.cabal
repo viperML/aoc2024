@@ -29,5 +29,6 @@ executable aoc2024
         , optparse-applicative
         , megaparsec
         , text
+        , mtl
     hs-source-dirs:   app
     default-language: Haskell2010

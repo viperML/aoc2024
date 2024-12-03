@@ -1,13 +1,13 @@
 module Day3 where
 
-import Control.Monad (void)
-import Data.Text (Text)
+import Control.Monad
+import Control.Monad.State
 import qualified Data.Text as T
-import Data.Void (Void)
-import Text.Megaparsec
+import Data.Void
+import Text.Megaparsec hiding (State)
 import Text.Megaparsec.Char
 
-type Parser = Parsec Void Text
+type Parser = ParsecT Void T.Text (State Bool)
 
 number :: Parser Integer
 number = do
@@ -18,6 +18,7 @@ mul :: Parser Integer
 mul = do
     void $ string "mul("
     n1 <- number
+    put False
     void $ string ","
     n2 <- number
     void $ string ")"
@@ -30,9 +31,10 @@ day3 :: String -> IO ()
 day3 input = do
     let i = T.pack input
     print i
-    let res = case runParser p1 "" i of
-            Right r -> r
-            Left err -> error (errorBundlePretty err)
+
+    let res = case runState (runParserT p1 "" i) False of
+            (Right r, _) -> r
+            (Left err, _) -> error (errorBundlePretty err)
 
     print res
     print $ sum res
