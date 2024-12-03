@@ -5,7 +5,7 @@ module Main where
 import Control.Exception (throw)
 import Day1
 import Day2
-import Day3 (day3)
+import Day3 (day3, day3part2)
 import Options.Applicative
 
 data Cli = Cli
@@ -37,6 +37,7 @@ main = do
             (2, 1) -> Day2.day2
             (2, 2) -> Day2.day2part2
             (3, 1) -> Day3.day3
+            (3, 2) -> Day3.day3part2
             _ -> error "Day not implemented"
         )
         input
