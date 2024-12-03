@@ -31,7 +31,7 @@ day3 input = do
     let i = T.pack input
     print i
     let res = case runParser p1 "" i of
-            Right res -> res
+            Right r -> r
             Left err -> error (errorBundlePretty err)
 
     print res
