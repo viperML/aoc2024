@@ -18,25 +18,39 @@ mul :: Parser Integer
 mul = do
     void $ string "mul("
     n1 <- number
-    put False
     void $ string ","
     n2 <- number
     void $ string ")"
-    return (n1 * n2)
+    s <- get
+    if s
+        then return (n1 * n2)
+        else return 0
+
+doParser :: Parser ()
+doParser = (string "do()" >> put True) <|> (string "don't()" >> put False)
 
 p1 :: Parser [Integer]
 p1 = some $ try (skipManyTill anySingle (try mul))
+
+-- p2 :: Parser Integer
+-- p2 = skipManyTill (try (skipManyTill anySingle (doParser <|> dontParser))) (try mul)
+
+p2 :: Parser [Integer]
+p2 = do
+    p <- (Left <$> doParser) <|> (Right <$> mul)
+    return []
+
 
 day3 :: String -> IO ()
 day3 input = do
     let i = T.pack input
     print i
 
-    let res = case runState (runParserT p1 "" i) False of
-            (Right r, _) -> r
-            (Left err, _) -> error (errorBundlePretty err)
+    res <- case runState (runParserT p2 "" i) True of
+        (Right r, s) -> print s >> return r
+        (Left err, s) -> error (errorBundlePretty err)
 
     print res
-    print $ sum res
+    -- print $ sum res
 
     return ()
