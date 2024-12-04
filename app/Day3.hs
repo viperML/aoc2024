@@ -1,4 +1,4 @@
-module Day3 where
+module Day3 (day3, day3part2) where
 
 import Control.Monad
 import Control.Monad.State
