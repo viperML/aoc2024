@@ -32,5 +32,6 @@ executable aoc2024
         , megaparsec
         , text
         , mtl
+        , array
     hs-source-dirs:   app
     default-language: Haskell2010

@@ -1,7 +1,11 @@
 {-# LANGUAGE PartialTypeSignatures #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
-module Day4 (day4) where
+module Day4 (day4, day4part2) where
 
+import qualified Control.Arrow as A
+import Data.Array.IArray ((!))
+import Data.Array.IArray as A
 import Data.Functor ((<&>))
 import Data.List (find, transpose)
 import Data.Void
@@ -44,3 +48,40 @@ day4 input = do
 
     mapM_ print components
     print (sum components)
+
+type Coord = (Int, Int)
+type Matrix a = A.Array Coord a
+
+{-
+ a . c
+ . A .
+ d . b
+-}
+
+isCross :: Char -> Char -> Char -> Char -> _
+isCross a b c d = all (`elem` ['M', 'S']) [a, b, c, d] && (a /= b) && (c /= d)
+
+day4part2 :: String -> IO ()
+day4part2 input = do
+    -- Load into Array
+    let y :: [(Coord, Char)] = do
+            (i, others) <- zip [0 ..] (zip [0 ..] <$> lines input)
+            (j, c) <- others
+            return ((i, j), c)
+    let n = length (lines input)
+    let m = length (head $ lines input)
+    let ainput :: Matrix Char = A.array ((0, 0), (n - 1, m - 1)) y
+
+    let newArr = do
+            i <- [1 .. n - 2]
+            j <- [1 .. m - 2]
+            let center = ainput ! (i, j)
+
+            let a = ainput ! (i - 1, j - 1)
+            let b = ainput ! (i + 1, j + 1)
+            let c = ainput ! (i - 1, j + 1)
+            let d = ainput ! (i + 1, j - 1)
+
+            if center == 'A' then return (isCross a b c d) else return False
+
+    print $ length (filter id newArr)
