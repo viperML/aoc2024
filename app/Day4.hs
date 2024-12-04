@@ -82,6 +82,6 @@ day4part2 input = do
             let c = ainput ! (i - 1, j + 1)
             let d = ainput ! (i + 1, j - 1)
 
-            if center == 'A' then return (isCross a b c d) else return False
+            return ((center == 'A') && isCross a b c d)
 
     print $ length (filter id newArr)
