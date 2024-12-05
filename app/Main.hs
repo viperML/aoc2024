@@ -43,6 +43,7 @@ main = do
             (4, 1) -> Day4.day4
             (4, 2) -> Day4.day4part2
             (5, 1) -> Day5.day5
+            (5, 2) -> Day5.day5part2
             _ -> error "Day not implemented"
         )
         input

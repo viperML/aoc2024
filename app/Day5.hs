@@ -1,12 +1,12 @@
-module Day5 (day5) where
+module Day5 (day5, day5part2) where
 
 import Control.Monad (void)
 import Data.Bifunctor
+import Data.List (sortBy)
 import Data.Void
 import Text.Megaparsec
 import Text.Megaparsec.Char
 import Text.Megaparsec.Char.Lexer
-import Text.Show.Pretty (pPrint)
 
 type Rule = (Int, Int)
 
@@ -21,6 +21,14 @@ checkRule' rule = mainPass
 
 checkRule :: Rule -> [Int] -> Bool
 checkRule rule list = not $ checkRule' rule (reverse list)
+
+sortUpdate :: [Rule] -> [Int] -> [Int]
+sortUpdate rules = sortBy f
+  where
+    f a b
+        | (a, b) `elem` rules = LT
+        | (b, a) `elem` rules = GT
+        | otherwise = EQ
 
 type Parser = Parsec Void String
 
@@ -57,3 +65,16 @@ day5 input = do
                 then return $ update !! (length update `div` 2)
                 else []
     print (sum res)
+
+day5part2 :: String -> IO ()
+day5part2 input = do
+    let (rules, updates) = myParse (lines input)
+
+    let res = do
+            update <- updates
+            let update' = sortUpdate rules update
+            if all (`checkRule` update) rules
+                then []
+                else return $ update' !! (length update' `div` 2)
+
+    print res
