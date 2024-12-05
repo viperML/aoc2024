@@ -26,6 +26,7 @@ executable aoc2024
         , Day2
         , Day3
         , Day4
+        , Day5
     build-depends:
         , base
         , optparse-applicative
@@ -33,5 +34,6 @@ executable aoc2024
         , text
         , mtl
         , array
+        , pretty-show
     hs-source-dirs:   app
     default-language: Haskell2010
