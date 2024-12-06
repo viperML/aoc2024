@@ -5,16 +5,13 @@
 
 module Day6 (day6, day6part2) where
 
+import Control.Concurrent.Async (mapConcurrently)
 import Control.Monad
-import Control.Monad.Writer.Lazy
-import Control.Parallel.Strategies
 import Data.Array (bounds, (!), (//))
 import Data.Array.IArray ((!?))
 import qualified Data.Array.IArray as A
-import Data.Function ((&))
 import Data.List (nub, nubBy)
 import Linear (V2 (..))
-import Text.Megaparsec.Byte (char)
 import Text.Show.Pretty (pPrint)
 import Util (Map, parseMapChar)
 import Prelude hiding (Left, Right, map)
@@ -59,25 +56,31 @@ day6 input = do
 sim :: Map Char -> Position -> Maybe Position
 sim map curPos = do
     let nextPos = runPos curPos
-    _ <- map !? nextPos.coord
-    let nextNextPos = runPos nextPos
-    case map !? nextNextPos.coord of
-        Just '#' -> Just $ Position nextPos.coord (rotate nextPos.dir)
-        _ -> Just nextPos
+    case map !? nextPos.coord of
+        Nothing -> Nothing
+        Just '#' -> Just $ Position curPos.coord (rotate curPos.dir)
+        Just _ -> Just nextPos
 
 day6part2 :: String -> IO ()
 day6part2 input = do
     let charMap = parseMapChar input
     let initialPos = Position (fst $ head $ filter (\e -> snd e == '^') (A.assocs charMap)) Up
-    let !charMaps = do
+    let charMaps = do
             let (V2 x0 y0, V2 xmax ymax) = bounds charMap
             x <- [x0 .. xmax]
             y <- [y0 .. ymax]
             return $ charMap // [(V2 x y, '#')]
 
-    let loops' = (isLoop initialPos <$> charMaps) `using` parList rseq
+    loops <-
+        mapConcurrently
+            ( \(i, map) -> do
+                let !res = isLoop initialPos map
+                putStrLn $ "Done: " <> show i
+                return res
+            )
+            (zip [(0 :: Int) ..] charMaps)
 
-    pPrint $ length (filter id loops')
+    pPrint $ length (filter id loops)
 
 isLoop :: Position -> Map Char -> Bool
 isLoop curPos map = go curPos []
