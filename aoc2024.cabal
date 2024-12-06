@@ -27,6 +27,7 @@ executable aoc2024
         , Day3
         , Day4
         , Day5
+        , Day6
     build-depends:
         , base
         , optparse-applicative

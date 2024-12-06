@@ -8,6 +8,7 @@ import Day2
 import Day3
 import Day4
 import Day5
+import Day6
 import Options.Applicative
 
 data Cli = Cli
@@ -44,6 +45,8 @@ main = do
             (4, 2) -> Day4.day4part2
             (5, 1) -> Day5.day5
             (5, 2) -> Day5.day5part2
+            (6, 1) -> Day6.day6
+            (6, 2) -> Day6.day6part2
             _ -> error "Day not implemented"
         )
         input
