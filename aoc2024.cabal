@@ -20,6 +20,8 @@ executable aoc2024
     main-is:          Main.hs
     default-extensions:
         , OverloadedStrings
+        , ScopedTypeVariables
+        , LambdaCase
     other-modules:
         , Util
         , Day1
@@ -36,5 +38,6 @@ executable aoc2024
         , mtl
         , array
         , pretty-show
+        , linear
     hs-source-dirs:   app
     default-language: Haskell2010
