@@ -1,4 +1,4 @@
-module Day2 where
+module Day2 (day2, day2part2) where
 
 import Data.Functor
 import Data.Maybe (fromJust)
