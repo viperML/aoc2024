@@ -48,3 +48,4 @@ executable aoc2024
         -O2
         -threaded
         -rtsopts
+        -eventlog

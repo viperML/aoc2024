@@ -5,6 +5,7 @@ with import <nixpkgs> { };
       haskellPackages.cabal-install
       haskellPackages.haskell-language-server
       haskellPackages.fast-tags
+      haskellPackages.threadscope
       yaml-language-server
       aoc-cli
     ];
