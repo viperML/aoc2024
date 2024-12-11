@@ -31,6 +31,7 @@ executable aoc2024
         , Day5
         , Day6
         , Day7
+        , Day11
     build-depends:
         , base
         , optparse-applicative
@@ -42,6 +43,7 @@ executable aoc2024
         , linear
         , parallel
         , async
+        , memoize
     hs-source-dirs:   app
     default-language: Haskell2010
     ghc-options:
